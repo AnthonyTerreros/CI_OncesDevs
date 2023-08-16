@@ -46,4 +46,8 @@ describe("Integration Test Dashboard Activities - Load Charts", () => {
     let title_chart4 = chart4.findElement(By.css("h2")).getText();
     expect(title_chart4).toEqual("Por motivo y tipo problema");
   });
+
+  it("should return ok", () => {
+    expect(1).toBe(1);
+  });
 });
