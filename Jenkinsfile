@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    stage('Checkout') {
-        steps {
-            script {
-                checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/AnthonyTerreros/CI_OncesDevs']]])
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/AnthonyTerreros/CI_OncesDevs']]])
+                }
             }
         }
-    }
-    stages {
         stage("Install") {
             steps {
                 script {
