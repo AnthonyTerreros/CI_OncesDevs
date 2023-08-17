@@ -15,7 +15,7 @@ pipeline {
                 }
             }
         }
-        stage("Test") {
+        stage("Test: Unit and Integration") {
             steps {
                 script {
                     bat "npm test"
@@ -24,6 +24,18 @@ pipeline {
             post {
                 always {
                     junit 'junit.xml'
+                }
+            }
+        }
+        state("Test: Acceptance") {
+            steps {
+                script {
+                    bat "node_modules\.bin\cucumber-js --format json:report.json"
+                }
+            }
+            post {
+                always {
+                    cucumber 'report.json'
                 }
             }
         }

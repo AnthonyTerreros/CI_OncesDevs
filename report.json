@@ -1,0 +1,471 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "broadnet-crm;administrator-wants-to-see-all-the-changes-maded-to-the-user-information",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Administrator wants to see all the changes maded to the user information",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "a set of cambios maked by administrators",
+            "match": {
+              "location": "features\\broadnetcrm.js:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 83243700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "administrator click in cambios view",
+            "match": {
+              "location": "features\\broadnetcrm.js:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23822900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "administrator going to see all the changes registered in the system",
+            "match": {
+              "location": "features\\broadnetcrm.js:54"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 241899
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;administrator-wants-to-see-n-selected-changes-in-the-system",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "Administrator wants to see n selected changes in the system",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "Number"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "15"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 17,
+            "name": "a number of changes that administrator wants to see",
+            "match": {
+              "location": "features\\broadnetcrm.js:64"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 45170800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 20,
+            "name": "administrator click on filter1 button",
+            "match": {
+              "location": "features\\broadnetcrm.js:75"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16774800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "administrator going to see all changes",
+            "match": {
+              "location": "features\\broadnetcrm.js:81"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 202700
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;administrator-wants-to-filter-information-by-admin-user-and-edited-user",
+        "keyword": "Scenario",
+        "line": 27,
+        "name": "Administrator wants to filter information by admin user and edited user",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "idUsuarioAdmin",
+                      "idUsuarioCambiado",
+                      "UsuarioAdmin",
+                      "UsuarioCambiado"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "4",
+                      "14",
+                      "anavarro",
+                      "adeleortiz"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 28,
+            "name": "the ids of the users that maded change in the other user",
+            "match": {
+              "location": "features\\broadnetcrm.js:88"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37076400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 31,
+            "name": "administrator click on filter2 button",
+            "match": {
+              "location": "features\\broadnetcrm.js:103"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 19693599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 32,
+            "name": "administrator going to see all changes by selected inputs",
+            "match": {
+              "location": "features\\broadnetcrm.js:111"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 152400
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;",
+        "keyword": "Scenario",
+        "line": 38,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "idUser"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "15"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 39,
+            "name": "the id of the user that will be disable",
+            "match": {
+              "location": "features\\broadnetcrm.js:116"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37135099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 42,
+            "name": "administrator click on disable user",
+            "match": {
+              "location": "features\\broadnetcrm.js:125"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21822099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 43,
+            "name": "administrator going to see the user disabled",
+            "match": {
+              "location": "features\\broadnetcrm.js:132"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 118199
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;",
+        "keyword": "Scenario",
+        "line": 49,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "initDate",
+                      "endDate"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "2023-07-01T05:00:00.000Z",
+                      "2023-07-31T05:00:00.000Z"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 50,
+            "name": "dates for the activities that administrator want to see",
+            "match": {
+              "location": "features\\broadnetcrm.js:137"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 41226000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 53,
+            "name": "administrator click on filter activities button",
+            "match": {
+              "location": "features\\broadnetcrm.js:150"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27091300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 54,
+            "name": "administrator going to see the table with the filtered activities",
+            "match": {
+              "location": "features\\broadnetcrm.js:158"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 125699
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;",
+        "keyword": "Scenario",
+        "line": 60,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "idUser"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "15"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 61,
+            "name": "the id of the user that will be reset his password",
+            "match": {
+              "location": "features\\broadnetcrm.js:167"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34766200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 64,
+            "name": "administrator click on reset password",
+            "match": {
+              "location": "features\\broadnetcrm.js:179"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2473227699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 65,
+            "name": "system going to send the new password via email",
+            "match": {
+              "location": "features\\broadnetcrm.js:186"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 102100
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "broadnet-crm;",
+        "keyword": "Scenario",
+        "line": 71,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "name",
+                      "lastname",
+                      "email",
+                      "cedula",
+                      "password",
+                      "username"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "DAVID ANTHONY",
+                      "TERREROS GURUMENDI",
+                      "anthonyterreros21@gmail.com",
+                      "0924990912",
+                      "aterreros",
+                      "aterreros"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "Given ",
+            "line": 72,
+            "name": "the user information",
+            "match": {
+              "location": "features\\broadnetcrm.js:192"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 176199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 75,
+            "name": "administrator click on register user",
+            "match": {
+              "location": "features\\broadnetcrm.js:202"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2758660200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 76,
+            "name": "system going to send the new crendentials in the user email",
+            "match": {
+              "location": "features\\broadnetcrm.js:244"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 124399
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "broadnet-crm",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Broadnet CRM",
+    "tags": [],
+    "uri": "features\\broadnetcrm.feature"
+  }
+]
