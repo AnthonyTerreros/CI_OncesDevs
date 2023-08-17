@@ -39,7 +39,7 @@ async function getDataFromDB(query) {
 
 // Cambios Test
 // See Default Cambios
-Given("A set of cambios maked by administrators", async () => {
+Given("a set of cambios maked by administrators", async () => {
   this.responseDB = await getDataFromDB(
     "SELECT TOP(10) * FROM Cambios ORDER BY fecha DESC"
   );
@@ -62,16 +62,17 @@ Then(
 
 // Test 2
 Given(
-  "A number of changes that administrator wants to see",
+  "a number of changes that administrator wants to see",
   async (dataTable) => {
-    this.pageSize = dataTable[0].Number;
+    let data = dataTable.hashes();
+    this.pageSize = data[0].Number;
     this.responseDB = await getDataFromDB(
       "SELECT TOP(15) * FROM Cambios ORDER BY fecha DESC"
     );
   }
 );
 
-When("administrator click on filter button", async () => {
+When("administrator click on filter1 button", async () => {
   this.responseAPI = await request(baseUrl)
     .get(`api/cambios/filter?page=1&pageSize=${this.pageSize}`)
     .set("Authorization", "Bearer " + token);
@@ -87,39 +88,43 @@ Then("administrator going to see all changes", () => {
 Given(
   "the ids of the users that maded change in the other user",
   async (dataTable) => {
-    this.idUsuarioAdmin = dataTable[0].idUsuarioAdmin;
-    this.idUsuarioCambiado = dataTable[0].idUsuarioCambiado;
+    let data = dataTable.hashes();
+    this.idUsuarioAdmin = data[0].idUsuarioAdmin;
+    this.idUsuarioCambiado = data[0].idUsuarioCambiado;
+    this.UsuarioAdmin = data[0].UsuarioAdmin;
+    this.UsuarioCambiado = data[0].UsuarioCambiado;
     this.responseDB =
-      await getDataFromDB(`SELECT [Cambios].[id], [Cambios].[idUsuarioAdmin], [Cambios].[idUsuarioCambiado], [Cambios].[tipo], [Cambios].[fecha]  FROM [broadnetcrm].[dbo].[Cambios]
+      await getDataFromDB(`SELECT TOP(24) * FROM [broadnetcrm].[dbo].[Cambios]
     WHERE [Cambios].[idUsuarioAdmin] = ${this.idUsuarioAdmin} AND [Cambios].[idUsuarioCambiado] = ${this.idUsuarioCambiado}
     ORDER BY [Cambios].[fecha] DESC`);
   }
 );
 
-When("administrator click on filter button", async () => {
+When("administrator click on filter2 button", async () => {
   this.responseAPI = await request(baseUrl)
     .get(
-      `api/cambios/filter?page=1&usuarioCambiado=${this.idUsuarioCambiado}&usuarioAdmin=${this.idUsuarioAdmin}`
+      `api/cambios/filter?usuarioCambiado=${this.UsuarioCambiado}&usuarioAdmin=${this.UsuarioAdmin}`
     )
     .set("Authorization", "Bearer " + token);
 });
 
 Then("administrator going to see all changes by selected inputs", () => {
-  assert.equal(this.responseDB.length, this.responseAPI.body.items.length);
+  assert.equal(this.responseDB.length, this.responseAPI.body.count);
 });
 
 // Test 4
-Given("the id of the user that will be disable", async () => {
+Given("the id of the user that will be disable", async (dataTable) => {
+  let data = dataTable.hashes();
   let idUser = data[0].idUser;
   this.responseDB = await getDataFromDB(
-    `SELECT * FROM Usuarios WHERE id = ${this.idUser}`
+    `SELECT * FROM Usuarios WHERE id = ${idUser}`
   );
   this.userName = this.responseDB[0].usuario;
 });
 
 When("administrator click on disable user", async () => {
-  this.responseAPI = request(baseUrl)
-    .put(`api/usuario/inhabilitar-usuario/${userName}`)
+  this.responseAPI = await request(baseUrl)
+    .put(`api/usuario/inhabilitar-usuario/${this.userName}`)
     .set("Authorization", "Bearer " + token)
     .send({ tipo: "I" });
 });
@@ -129,17 +134,21 @@ Then("administrator going to see the user disabled", () => {
 });
 
 // Test 5
-Given("dates for the activities that administrator want to see", async () => {
-  this.initDate = dataTable[0].initDate;
-  this.endDate = dataTable[0].endDate;
-  this.responseDB =
-    await getDataFromDB(`SELECT * FROM [broadnetcrm].[dbo].[Requerimientos]
+Given(
+  "dates for the activities that administrator want to see",
+  async (dataTable) => {
+    let data = dataTable.hashes();
+    this.initDate = data[0].initDate;
+    this.endDate = data[0].endDate;
+    this.responseDB =
+      await getDataFromDB(`SELECT * FROM [broadnetcrm].[dbo].[Requerimientos]
       JOIN [broadnetcrm].[dbo].[Actividades] ON [actividadId] = [Actividades].[id]
       WHERE [fecha] >= '${this.initDate}' AND [fecha_fin] <= '${this.endDate}'`);
-});
+  }
+);
 
 When("administrator click on filter activities button", async () => {
-  this.responseBackend = await request(baseUrl)
+  this.responseAPI = await request(baseUrl)
     .get(
       `api/actividad/dashbord-filter?fecha_inicio="${this.initDate}"&fecha_fin="${this.endDate}"`
     )
@@ -149,21 +158,29 @@ When("administrator click on filter activities button", async () => {
 Then(
   "administrator going to see the table with the filtered activities",
   () => {
-    assert.equal(this.responseDB.length, this.responseAPI.body.items.length);
+    assert.equal(this.responseDB.length, this.responseAPI.body.length);
   }
 );
 
 // Test 6
 
-Given("the id of the user that will be reset his password", () => {
-  this.idUser = dataTable[0].idUser;
-});
+Given(
+  "the id of the user that will be reset his password",
+  async (dataTable) => {
+    let data = dataTable.hashes();
+    this.idUser = data[0].idUser;
+    this.responseDB = await getDataFromDB(
+      `SELECT * FROM Usuarios WHERE id = '${this.idUser}'`
+    );
+    this.user = this.responseDB[0];
+  }
+);
 
 When("administrator click on reset password", async () => {
   this.responseAPI = await request(baseUrl)
     .put("api/usuario/resetear-constrasena/24")
     .set("Authorization", "Bearer " + token)
-    .send(user);
+    .send(this.user);
 });
 
 Then("system going to send the new password via email", () => {
@@ -172,13 +189,14 @@ Then("system going to send the new password via email", () => {
 
 // Test 7
 
-Given("the user information", () => {
-  this.name = dataTable[0].name;
-  this.lastname = dataTable[0].lastname;
-  this.email = dataTable[0].email;
-  this.cedula = dataTable[0].cedula;
-  this.password = dataTable[0].password;
-  this.username = dataTable[0].username;
+Given("the user information", (dataTable) => {
+  let data = dataTable.hashes();
+  this.name = data[0].name;
+  this.lastname = data[0].lastname;
+  this.email = data[0].email;
+  this.cedula = data[0].cedula;
+  this.password = data[0].password;
+  this.username = data[0].username;
 });
 
 When("administrator click on register user", async () => {
