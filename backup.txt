@@ -1,5 +1,6 @@
 dashboard_activities.integration.test.js
 
+// correct test
 // const { Builder, By, Key, until } = require("selenium-webdriver");
 // require("selenium-webdriver/firefox");
 
