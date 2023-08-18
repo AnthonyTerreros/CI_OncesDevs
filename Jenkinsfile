@@ -27,10 +27,10 @@ pipeline {
                 }
             }
         }
-        state("Test: Acceptance") {
+        stage("Test: Acceptance") {
             steps {
                 script {
-                    bat "node_modules\.bin\cucumber-js --format json:report.json"
+                    bat "node_modules/.bin/cucumber-js --format json:report.json"
                 }
             }
             post {
