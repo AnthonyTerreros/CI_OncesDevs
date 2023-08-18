@@ -35,7 +35,7 @@ pipeline {
             }
             post {
                 always {
-                    cucumber 'report.json'
+                     cucumber fileIncludePattern: 'report.json'
                 }
             }
         }
